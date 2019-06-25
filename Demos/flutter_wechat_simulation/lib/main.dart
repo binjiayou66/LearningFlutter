@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import './common/webview.dart';
 import 'app.dart';
 import 'loading.dart';
 import 'search.dart';
@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: <String, WidgetBuilder>{
         'app': (BuildContext context) => App(),
-        '/friends': (BuildContext context) => WebView(
-              initialUrl: 'https://www.baidu.com',
+        '/friends': (BuildContext context) => WebViewPage(
+              url: 'https://www.baidu.com',
             ),
         'search': (BuildContext context) => Search(),
       },
