@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'message/message.dart';
 import 'friends/friends.dart';
 import 'me/me.dart';
+import 'package:barcode_scan/barcode_scan.dart';
+import 'package:qrcode_reader/qrcode_reader.dart';
 
 class App extends StatefulWidget {
   @override
@@ -43,14 +45,20 @@ class _AppState extends State<App> {
 
   _popupMenuItem(String title, {String imagePath}) {
     return PopupMenuItem(
-      child: Row(
-        children: <Widget>[
-          Image.asset(imagePath, width: 32.0, height: 32.0),
-          Container(
-            padding: EdgeInsets.only(left: 20.0),
-            child: Text(title, style: TextStyle(color: Colors.white)),
-          )
-        ],
+      child: GestureDetector(
+        onTapUp: (_) async {
+          String content = await BarcodeScanner.scan();
+          print('aaa   $content');
+        },
+        child: Row(
+          children: <Widget>[
+            Image.asset(imagePath, width: 32.0, height: 32.0),
+            Container(
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text(title, style: TextStyle(color: Colors.white)),
+            )
+          ],
+        ),
       ),
     );
   }
